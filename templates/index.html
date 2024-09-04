@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>YouTube Video Search</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>YouTube Video Search</h1>
+        <form method="POST">
+            <input type="text" name="query" placeholder="検索キーワードを入力">
+            <button type="submit">検索</button>
+        </form>
+
+        {% if videos %}
+            <h2>検索結果</h2>
+            <div class="videos">
+                {% for video in videos %}
+                    <div class="video">
+                        <h3>{{ video.title }}</h3>
+                        <iframe src="{{ video.url }}" frameborder="0" allowfullscreen></iframe>
+                        <p>{{ video.description }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
